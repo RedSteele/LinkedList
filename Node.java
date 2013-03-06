@@ -11,12 +11,16 @@ public class Node{
 	/**
 	 * Constructors
 	 */
+	
 	public Node(int value, Node next){
 		this.value = value;
 		this.next = next;
 	}
 	public Node(){
 		this(0, null);
+	}
+	public Node(Node next){
+		this(0, next);
 	}
 	public Node(int value){
 		this(value, null);
