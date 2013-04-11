@@ -81,7 +81,57 @@ class LinkedList {
 	}
 
 	public int pop(){
-		
+		Node first = head.getNext();
+	 	Node next = first.getNext();
+	 	first.setNext(null);
+	 	head.setNext(next);
+	 	return first.getValue();
+	 }
+
+	 public int linearSearch(int n) {
+	 	int index = 0;
+	 	Node next = head;
+	 	boolean found = false;
+	 	while(next.getNext()!=null&&!found) {
+	 		next = next.getNext();
+	 		if(next.getValue() == n) return index;
+	 		index++;
+	 	}
+	 	return 0;
+	 }
+
+	 public void insertNth(int n, int value) {
+	 	int index = 0;
+	 	Node next = head;
+	 	Node current = head;
+	 	while(next.getNext()!= null&&index!=n) {
+	 		current = next;
+	 		next = next.getNext();
+	 		index++;
+	 		if(index==n) {
+	 			current = next;
+	 			next = next.getNext();
+	 			current.setNext(new Node(value, next));
+	 		}
+	 	}
+	 	if(index == n) {
+	 		head.setNext(new Node(value, head.getNext()));
+	 	}
+	 }
+
+	 public void sortedInsert(int value){
+		Node current = head.getNext();
+		int index = 0;
+		boolean run = true;
+		while(run && current.getValue()<value){
+			index++;
+			if(current.getNext() != null){
+				current = current.getNext();
+			}else{
+				run = false;;
+			}	
+		}
+		insertNth(value, index);
 	}
 	 
 }
