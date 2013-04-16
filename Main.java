@@ -3,8 +3,9 @@ class Main{
 		LinkedList a = new LinkedList();
 		a.buildOneTwoThree();
 		a.print();
+		System.out.println();
 		System.out.println(a.getNth(2));
-		a.sortedInsert(2);
+		a.sortedInsert(5);
 		a.print();
 	}
 }
