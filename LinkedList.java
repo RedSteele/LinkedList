@@ -18,6 +18,9 @@ class LinkedList {
 	public Node getHead(){
 		return head;
 	}
+	public void setHead(Node head){
+		this.head = head;
+	}
 
 	/**
 	 * push [Given an int, add a new node at the head of the list with this value.]
@@ -253,11 +256,38 @@ class LinkedList {
 	/**
 	 * NOW FOR THE FUN STUFF MADAFACKERS!!!
 	 */
-	private void insert(Node next, int value) {
-		Node newGuy = next.getNext();
-		next.setNext(new Node(value, newGuy));
-		next = null;
-
+	private void insert(int value, Node next) {
+		next.setNext(new Node(value, next.getNext()));
 	}
+
+	public static LinkedList sortedMerge(LinkedList a, LinkedList b){
+		LinkedList sorted = new LinkedList();
+
+		Node aNext = a.getHead().getNext();
+		Node bNext = b.getHead().getNext();
+		Node sortedNow = sorted.getHead();
+		boolean run = true;
+
+		while(run==true){
+			if(aNext != null || bNext != null){			
+				if(aNext.getValue()>=bNext.getValue()){
+					sortedNow.setNext(aNext);
+					aNext = aNext.getNext();
+					sortedNow = sortedNow.getNext();
+				}else{
+					sortedNow.setNext(bNext);
+					bNext = bNext.getNext();
+					sortedNow = sortedNow.getNext();
+				}
+			}	
+			if(aNext == null || bNext == null){
+				run = false;
+			}
+		}
+		return sorted;
+	}
+	
+
+
 
 }
